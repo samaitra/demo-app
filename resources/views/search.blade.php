@@ -22,23 +22,26 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+    $("#target").submit(function(event) {
+  		alert( "Handler for .submit() called." );
+  		event.preventDefault();
+	});
+    </script>
         
     </head>
     <body>
      <div class="container">
-	   <form class="form-search">
-         <div class="search-bar">	
-          <h2 class="form-search-heading">Search Artist</h2>
-          <label for="inputCountry">Country</label>
-          <input type="text" id="inputCountry" class="form-control" placeholder="Country" required autofocus>
-         </div>
-         <p></p>  
-         <div class="search-button" align="center" float="left">
-          <button type="submit" class="btn btn-default">Submit</button>
-         </div>
+	      <h2 class="form-search-heading">Search Artist</h2>
+       	   <form id="target" action="/search">
+           <div class="form-group">	       	   
+            <input type="text" id="inputCountry" class="form-control" placeholder="Country" required autofocus >
+           </div>
+           <div class="form-group" align="center">	  
+            <button type="submit" class="btn btn-default">Search</button>
+            </div>
        </form>
 
     </div> <!-- /container -->
