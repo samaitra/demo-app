@@ -25,10 +25,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script>
-    $("#target").submit(function(event) {
-  		alert( "Handler for .submit() called." );
-  		event.preventDefault();
-	});
+	$(document).ready(function(){
+    $("form").submit(function(event){
+    	event.preventDefault();
+    	c = $("#inputCountry").val();
+		console.log("c="+c);   
+        $.get("http://ws.audioscrobbler.com/2.0?method=geo.gettopartists&country="+c+"&api_key=9b8fe797db777de34100a61d9726a5d3&format=json", function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+        });
+    });
+    });
     </script>
         
     </head>
@@ -37,7 +43,7 @@
 	      <h2 class="form-search-heading">Search Artist</h2>
        	   <form id="target" action="/search">
            <div class="form-group">	       	   
-            <input type="text" id="inputCountry" class="form-control" placeholder="Country" required autofocus >
+            <input type="text" id="inputCountry" class="form-control" placeholder="Country" required autofocus />
            </div>
            <div class="form-group" align="center">	  
             <button type="submit" class="btn btn-default">Search</button>
