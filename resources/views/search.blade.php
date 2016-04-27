@@ -30,11 +30,24 @@
     	event.preventDefault();
     	c = $("#inputCountry").val();
 		console.log("c="+c);   
-        $.get("http://ws.audioscrobbler.com/2.0?method=geo.gettopartists&country="+c+"&api_key=9b8fe797db777de34100a61d9726a5d3&format=json", function(data, status){
-        console.log("Data: " + data + "\nStatus: " + status);
+            $.get("http://ws.audioscrobbler.com/2.0?method=geo.gettopartists&country="+c+"&api_key=9b8fe797db777de34100a61d9726a5d3&format=json", function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+        	var length = data.length;
+        	var txt = "";
+        	if(length > 0){
+                    for(var i=0;i<length;i++){
+                        if(data[i].topartists){
+                            txt += "<tr><td>"+data[i].topartists+"</td><td>"+data[i].image+"</td></tr>";
+                        }
+                    }
+                    if(txt != ""){
+                        $("#table").append(txt).removeClass("hidden");
+                    }
+                }	
         });
     });
     });
+    
     </script>
         
     </head>
@@ -49,7 +62,12 @@
             <button type="submit" class="btn btn-default">Search</button>
             </div>
        </form>
-
+		<table id="table" class="hidden">
+    <tr>
+        <th>Album</th>
+        <th>Artist</th>
+    </tr>
+</table>	
     </div> <!-- /container -->
     </body>
 </html>
